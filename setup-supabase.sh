@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 echo "🗄️  Setting up Supabase Database for LeadExtract..."
 echo ""
 echo "📋 Steps to set up Supabase:"
