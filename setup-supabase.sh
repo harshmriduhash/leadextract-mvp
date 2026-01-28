@@ -2,7 +2,6 @@
 
 echo "🗄️  Setting up Supabase Database for LeadExtract..."
 echo ""
-
 echo "📋 Steps to set up Supabase:"
 echo ""
 echo "1. Go to https://supabase.com"
