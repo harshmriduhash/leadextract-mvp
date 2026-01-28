@@ -155,12 +155,5 @@ curl "https://your-project-id.supabase.co/rest/v1/" \
 
 **Next command:** Deploy to Vercel and start making money!
 
----
-
-**Need help?**
-
-- GitHub Issues: https://github.com/harsh/leadextract-mvp/issues
-- Email: yoshi@musicailab.com
-- Twitter: @yksanjo
 
 **Remember:** The fastest way to validate is to use it yourself. Deploy now and start scraping for Soundraw immediately!
