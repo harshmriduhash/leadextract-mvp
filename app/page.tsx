@@ -274,7 +274,7 @@ export default function Home() {
             <div className="mb-4 md:mb-0">
               <div className="text-2xl font-bold text-white">LeadExtract</div>
               <p className="text-gray-400">
-                © 2024 LeadExtract. All rights reserved.
+                © 2026 LeadExtract. All rights reserved.
               </p>
             </div>
             <div className="flex gap-6">
