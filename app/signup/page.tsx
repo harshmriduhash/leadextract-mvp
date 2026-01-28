@@ -1,75 +1,102 @@
-'use client'
+"use client";
 
-import { useState, Suspense } from 'react'
-import Link from 'next/link'
-import { useRouter, useSearchParams } from 'next/navigation'
-import { UserPlus, Mail, Lock, User, Building } from 'lucide-react'
+import { useState, Suspense } from "react";
+import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
+import { UserPlus, Mail, Lock, User, Building } from "lucide-react";
 
 function SignupContent() {
-  const router = useRouter()
-  const searchParams = useSearchParams()
-  const plan = searchParams.get('plan') || 'pro'
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const plan = searchParams.get("plan") || "pro";
 
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    company: '',
-    password: '',
-    confirmPassword: '',
-    plan: plan
-  })
-  const [error, setError] = useState('')
-  const [loading, setLoading] = useState(false)
+    name: "",
+    email: "",
+    company: "",
+    password: "",
+    confirmPassword: "",
+    plan: plan,
+  });
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+  ) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
-    })
-  }
+      [e.target.name]: e.target.value,
+    });
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setError('')
+    e.preventDefault();
+    setError("");
 
     if (formData.password !== formData.confirmPassword) {
-      setError('Passwords do not match')
-      return
+      setError("Passwords do not match");
+      return;
     }
 
     if (formData.password.length < 8) {
-      setError('Password must be at least 8 characters')
-      return
+      setError("Password must be at least 8 characters");
+      return;
     }
 
-    setLoading(true)
+    setLoading(true);
 
     try {
-      const response = await fetch('/api/auth/signup', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const response = await fetch("/api/auth/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
-      })
+      });
 
-      const data = await response.json()
+      const data = await response.json();
 
       if (response.ok) {
-        router.push('/dashboard')
+        router.push("/dashboard");
       } else {
-        setError(data.error || 'Signup failed')
+        setError(data.error || "Signup failed");
       }
     } catch (err) {
-      setError('An error occurred. Please try again.')
+      setError("An error occurred. Please try again.");
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   const plans = [
-    { id: 'starter', name: 'Starter', price: '$99/month', features: ['5,000 exports/month', 'Basic support', 'CSV/Excel export'] },
-    { id: 'pro', name: 'Pro', price: '$299/month', features: ['Unlimited exports', 'Priority support', 'All export formats', 'Email finding'] },
-    { id: 'enterprise', name: 'Enterprise', price: '$599/month', features: ['Everything in Pro', 'API access', 'Dedicated support', 'Custom integrations'] },
-  ]
+    {
+      id: "starter",
+      name: "Starter",
+      price: "$99/month",
+      features: ["5,000 exports/month", "Basic support", "CSV/Excel export"],
+    },
+    {
+      id: "pro",
+      name: "Pro",
+      price: "$299/month",
+      features: [
+        "Unlimited exports",
+        "Priority support",
+        "All export formats",
+        "Email finding",
+      ],
+    },
+    {
+      id: "enterprise",
+      name: "Enterprise",
+      price: "$599/month",
+      features: [
+        "Everything in Pro",
+        "API access",
+        "Dedicated support",
+        "Custom integrations",
+      ],
+    },
+  ];
 
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
@@ -80,7 +107,9 @@ function SignupContent() {
               <UserPlus className="h-8 w-8 text-primary-600" />
             </div>
           </div>
-          <h1 className="mt-6 text-4xl font-bold text-gray-900">Start Your Free Trial</h1>
+          <h1 className="mt-6 text-4xl font-bold text-gray-900">
+            Start Your Free Trial
+          </h1>
           <p className="mt-2 text-lg text-gray-600">
             14-day free trial. No credit card required.
           </p>
@@ -89,20 +118,28 @@ function SignupContent() {
         <div className="grid lg:grid-cols-2 gap-8">
           {/* Plan Selection */}
           <div className="space-y-6">
-            <h2 className="text-2xl font-bold text-gray-900">Choose Your Plan</h2>
+            <h2 className="text-2xl font-bold text-gray-900">
+              Choose Your Plan
+            </h2>
             <div className="space-y-4">
               {plans.map((planItem) => (
                 <div
                   key={planItem.id}
                   className={`card cursor-pointer transition-all ${
-                    formData.plan === planItem.id ? 'border-2 border-primary-600 ring-2 ring-primary-100' : 'border-gray-200'
+                    formData.plan === planItem.id
+                      ? "border-2 border-primary-600 ring-2 ring-primary-100"
+                      : "border-gray-200"
                   }`}
-                  onClick={() => setFormData({ ...formData, plan: planItem.id })}
+                  onClick={() =>
+                    setFormData({ ...formData, plan: planItem.id })
+                  }
                 >
                   <div className="flex justify-between items-start">
                     <div>
                       <h3 className="text-xl font-bold">{planItem.name}</h3>
-                      <div className="text-2xl font-bold mt-2">{planItem.price}</div>
+                      <div className="text-2xl font-bold mt-2">
+                        {planItem.price}
+                      </div>
                     </div>
                     {formData.plan === planItem.id && (
                       <div className="bg-primary-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
@@ -112,7 +149,10 @@ function SignupContent() {
                   </div>
                   <ul className="mt-4 space-y-2">
                     {planItem.features.map((feature, index) => (
-                      <li key={index} className="flex items-center text-gray-600">
+                      <li
+                        key={index}
+                        className="flex items-center text-gray-600"
+                      >
                         <div className="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
                         {feature}
                       </li>
@@ -134,7 +174,10 @@ function SignupContent() {
 
               <div className="space-y-4">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label
+                    htmlFor="name"
+                    className="block text-sm font-medium text-gray-700 mb-1"
+                  >
                     Full Name
                   </label>
                   <div className="relative">
@@ -155,7 +198,10 @@ function SignupContent() {
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-medium text-gray-700 mb-1"
+                  >
                     Email Address
                   </label>
                   <div className="relative">
@@ -177,7 +223,10 @@ function SignupContent() {
                 </div>
 
                 <div>
-                  <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label
+                    htmlFor="company"
+                    className="block text-sm font-medium text-gray-700 mb-1"
+                  >
                     Company (Optional)
                   </label>
                   <div className="relative">
@@ -197,7 +246,10 @@ function SignupContent() {
                 </div>
 
                 <div>
-                  <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label
+                    htmlFor="password"
+                    className="block text-sm font-medium text-gray-700 mb-1"
+                  >
                     Password
                   </label>
                   <div className="relative">
@@ -215,11 +267,16 @@ function SignupContent() {
                       placeholder="••••••••"
                     />
                   </div>
-                  <p className="mt-1 text-sm text-gray-500">Minimum 8 characters</p>
+                  <p className="mt-1 text-sm text-gray-500">
+                    Minimum 8 characters
+                  </p>
                 </div>
 
                 <div>
-                  <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label
+                    htmlFor="confirmPassword"
+                    className="block text-sm font-medium text-gray-700 mb-1"
+                  >
                     Confirm Password
                   </label>
                   <div className="relative">
@@ -248,13 +305,22 @@ function SignupContent() {
                   required
                   className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
                 />
-                <label htmlFor="terms" className="ml-2 block text-sm text-gray-900">
-                  I agree to the{' '}
-                  <a href="#" className="text-primary-600 hover:text-primary-500">
+                <label
+                  htmlFor="terms"
+                  className="ml-2 block text-sm text-gray-900"
+                >
+                  I agree to the{" "}
+                  <a
+                    href="#"
+                    className="text-primary-600 hover:text-primary-500"
+                  >
                     Terms of Service
-                  </a>{' '}
-                  and{' '}
-                  <a href="#" className="text-primary-600 hover:text-primary-500">
+                  </a>{" "}
+                  and{" "}
+                  <a
+                    href="#"
+                    className="text-primary-600 hover:text-primary-500"
+                  >
                     Privacy Policy
                   </a>
                 </label>
@@ -266,17 +332,21 @@ function SignupContent() {
                   disabled={loading}
                   className="btn-primary w-full flex justify-center py-3 text-lg"
                 >
-                  {loading ? 'Creating Account...' : 'Start Free Trial'}
+                  {loading ? "Creating Account..." : "Start Free Trial"}
                 </button>
                 <p className="mt-2 text-center text-sm text-gray-600">
-                  By signing up, you agree to our 14-day free trial. No credit card required.
+                  By signing up, you agree to our 14-day free trial. No credit
+                  card required.
                 </p>
               </div>
 
               <div className="text-center">
                 <p className="text-sm text-gray-600">
-                  Already have an account?{' '}
-                  <Link href="/login" className="font-medium text-primary-600 hover:text-primary-500">
+                  Already have an account?{" "}
+                  <Link
+                    href="/login"
+                    className="font-medium text-primary-600 hover:text-primary-500"
+                  >
                     Sign in
                   </Link>
                 </p>
@@ -286,13 +356,19 @@ function SignupContent() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default function SignupPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
+    <Suspense
+      fallback={
+        <div className="min-h-screen flex items-center justify-center">
+          Loading...
+        </div>
+      }
+    >
       <SignupContent />
     </Suspense>
-  )
+  );
 }
