@@ -3,7 +3,7 @@
 ## ✅ **WHAT'S BEEN BUILT**
 
 ### **🎯 Complete MVP Application**
-- **GitHub Repository:** https://github.com/yksanjo/leadextract-mvp
+- **GitHub Repository:** https://github.com/harshmriduhash/leadextract-mvp
 - **Status:** READY FOR DEPLOYMENT
 - **Lines of Code:** ~2,300
 - **Files:** 26
