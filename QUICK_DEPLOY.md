@@ -7,12 +7,14 @@
 ## 🚀 3-Step Deployment
 
 ### Step 1: Deploy to Vercel (5 minutes)
+
 1. **Click this button:** [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fyksanjo%2Fleadextract-mvp)
 2. **Connect your GitHub account**
 3. **Configure project name:** `leadextract`
 4. **Click Deploy** (we'll add environment variables next)
 
 ### Step 2: Set up Supabase (5 minutes)
+
 1. **Go to:** https://supabase.com
 2. **Create new project:** `leadextract-db`
 3. **Wait for database to provision**
@@ -21,6 +23,7 @@
 6. **Run the SQL** to create all tables
 
 ### Step 3: Configure Environment Variables (5 minutes)
+
 In Vercel dashboard, add these environment variables:
 
 ```
@@ -38,6 +41,7 @@ NODE_ENV=production
 ```
 
 **Generate encryption key:**
+
 ```bash
 openssl rand -base64 32
 # Copy the output to ENCRYPTION_KEY
@@ -50,12 +54,14 @@ openssl rand -base64 32
 ## 📊 Immediate Actions (Day 1)
 
 ### 1. Become Customer #1
+
 - Sign up for free trial
 - Set up your LinkedIn session
 - Start scraping for Soundraw BD
 - Validate the product works
 
 ### 2. Test Everything
+
 - [ ] Landing page loads
 - [ ] Signup works
 - [ ] Login works
@@ -64,7 +70,9 @@ openssl rand -base64 32
 - [ ] Database connections work
 
 ### 3. First Revenue (Today!)
+
 **You pay yourself $299/month** to:
+
 1. Validate payment flow
 2. Become first paying customer
 3. Document experience for testimonials
@@ -72,6 +80,7 @@ openssl rand -base64 32
 ## 🔧 Technical Validation
 
 ### Check Database Connection
+
 ```bash
 # Test Supabase connection
 curl "https://your-project-id.supabase.co/rest/v1/" \
@@ -79,6 +88,7 @@ curl "https://your-project-id.supabase.co/rest/v1/" \
 ```
 
 ### Test API Endpoints
+
 1. **Health check:** `GET /api/health`
 2. **Signup:** `POST /api/auth/signup`
 3. **Login:** `POST /api/auth/login`
@@ -86,16 +96,19 @@ curl "https://your-project-id.supabase.co/rest/v1/" \
 ## 🚨 Troubleshooting
 
 ### If Vercel deployment fails:
+
 - Check environment variables
 - Verify Supabase URL and keys
 - Check build logs in Vercel
 
 ### If database connection fails:
+
 - Verify Supabase project is active
 - Check API keys are correct
 - Ensure tables were created
 
 ### If authentication fails:
+
 - Check encryption key is 32 characters
 - Verify user table has data
 - Check browser console for errors
@@ -103,11 +116,13 @@ curl "https://your-project-id.supabase.co/rest/v1/" \
 ## 📈 Week 1 Goals
 
 ### Revenue Target: $900 MRR
+
 - You: $299/month
 - 2-3 customers: ~$600/month
 - **Total: ~$900 MRR**
 
 ### Customer Acquisition:
+
 1. **Twitter/X:** Announce launch
 2. **Reddit r/sales:** Share tool
 3. **LinkedIn:** Post about solution
@@ -116,12 +131,14 @@ curl "https://your-project-id.supabase.co/rest/v1/" \
 ## 💡 Pro Tips
 
 ### For Immediate Use (Soundraw BD):
+
 1. Scrape "music production companies"
 2. Export leads to CSV
 3. Use for your outreach
 4. Document time saved
 
 ### For Marketing:
+
 1. Record screen capture of using tool
 2. Create before/after comparison
 3. Share testimonials from Day 1
@@ -130,6 +147,7 @@ curl "https://your-project-id.supabase.co/rest/v1/" \
 ## 🎊 Congratulations!
 
 **You now have a fully functional SaaS application that can:**
+
 - ✅ Generate revenue TODAY
 - ✅ Solve your Soundraw BD problem
 - ✅ Scale to thousands of users
@@ -140,7 +158,8 @@ curl "https://your-project-id.supabase.co/rest/v1/" \
 ---
 
 **Need help?**
-- GitHub Issues: https://github.com/yksanjo/leadextract-mvp/issues
+
+- GitHub Issues: https://github.com/harsh/leadextract-mvp/issues
 - Email: yoshi@musicailab.com
 - Twitter: @yksanjo
 
